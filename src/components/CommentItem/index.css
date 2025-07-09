@@ -1,0 +1,9 @@
+.comment-item{
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 1px solid black;
+}
+.col{
+    width:25%;
+}

@@ -1,0 +1,17 @@
+.dashboard{
+    padding:20px;
+}
+
+.comments-container{
+    list-style-type: none;
+    padding-left: 0px;
+    border:1px solid rgb(34, 34, 65);
+    border-radius: 6px;
+}
+.table-header{
+    background-color: rgba(44, 44, 100, 0.295);
+}
+.pagination{
+    display:flex;
+    align-items: center;
+}

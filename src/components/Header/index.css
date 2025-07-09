@@ -1,0 +1,22 @@
+.header{
+    background-color: rgba(40, 40, 94, 0.856);
+    color:#ffffff;
+    padding-top: 5px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+.link{
+    text-decoration: none;
+    color:#fff;
+}
+.short-name{
+    color:rgba(40, 40, 94, 0.856);
+    background-color: #fff;
+    padding:10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
