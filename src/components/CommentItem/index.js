@@ -5,8 +5,8 @@ const CommentItem = (props) => {
     let commentText = body.slice(0,30)
     return(
         <li className='comment-item'>
-            <p className='col'>{postId}</p>
-            <p className='col'>{name}</p>
+            <p className='id-col'>{postId}</p>
+            <p className='col'>{name.slice(0,20)}...</p>
             <p className='col'>{email}</p>
             <p className='col'>{commentText}...</p>
         </li>

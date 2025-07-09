@@ -4,8 +4,8 @@ const UserDetailsField = (props) => {
     const {title , content} = props
     return(
         <li className='field-box'>
-            <p>{title}</p>
-            <p className='content'>{content}</p>
+            <p className='title no-extra-space'>{title}</p>
+            <p className='content no-extra-space'>{content}</p>
         </li>
     )
 }

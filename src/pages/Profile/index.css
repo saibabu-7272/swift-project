@@ -12,14 +12,22 @@
     align-items: center;
 }
 
-.content{
-    background-color: rgba(133, 129, 129, 0.397);
-    padding:5px;
-}
+
 .user-details-fields{
     display: flex;
     flex-wrap: wrap;
     gap:10px;
     list-style-type: none;
     padding-left: 0px;
+}
+.back-btn{
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-size: 22px;
+    outline: none;
+}
+.no-extra-space{
+    padding: 0px;
+    margin:0px;
 }

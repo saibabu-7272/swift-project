@@ -2,6 +2,7 @@
 import './index.css'
 import UserDetailsField from '../../components/UserDetailsField'
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
     const {userDetails} = props
@@ -9,14 +10,17 @@ const Profile = (props) => {
     return(
         <>
             <div className='profile-page'>
-                <button><IoIosArrowRoundBack /></button>
-                <p>welcome</p>
+                <div className='flex'>
+                    <Link to="/" className='link'><button className='back-btn'><IoIosArrowRoundBack /></button></Link>
+                    <p> Welcome, {userDetails.name}</p>
+                </div>
+                
                 <div className='profile-details-card'>
                     <div className='main-details-container'>
-                        <h1>EH</h1>
+                        <h1 className='short-name'>EH</h1>
                         <div>
-                            <p>Example Name</p>
-                            <p>example@email.com</p>
+                            <p className='no-extra-space'>{userDetails.name}</p>
+                            <p className='no-extra-space'>{userDetails.email}</p>
                         </div>
                     </div>
                   

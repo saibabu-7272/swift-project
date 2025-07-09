@@ -5,10 +5,10 @@ const Header = (props) =>{
    return(
     <header className='header'>
         <Link className='link' to="/">
-        <h1>Swift</h1>
+        <h1 className='website-name'>Swift</h1>
         </Link>
         <Link className='link' to="/profile">
-            <p><span className='short-name'>{shortName}</span>{name}</p>
+            <p className='profile-nav'><span className='short-name'>{shortName}</span>{name}</p>
         </Link>
         
         

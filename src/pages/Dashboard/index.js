@@ -1,7 +1,8 @@
 import { useEffect, useState} from 'react'
 import './index.css'
 import CommentItem from '../../components/CommentItem'
-
+import { FaSortUp,FaSortDown  } from "react-icons/fa";
+import { CiSearch } from "react-icons/ci";
 
 
 const Dashboard = () => {
@@ -28,8 +29,8 @@ const Dashboard = () => {
         fetchCommetsData()
     },[])
 
-    const onUpdatePageRange = e => setPageRage(pre => ({...pre, range : parseInt(e.target.value)}))
-
+    const onUpdatePageRange = e => setPageRage({page : 1,tempRange:parseInt(e.target.value), range : parseInt(e.target.value)})
+ 
     const onPrevPage = () => {
         if(pageRange.page > 1){
             setPageRage(pre => ({...pre , page : pre.page - 1,tempRange : pre.tempRange - pre.range}))
@@ -42,7 +43,6 @@ const Dashboard = () => {
 
     const toggle = (e) => {
         
-        // const status = sortTypes[sorting.sortStatus]
         if (sorting.field === '' || sorting.field !== e.target.value){
             setSorting({field : e.target.value, sortStatus : 0})
         }else{
@@ -146,36 +146,66 @@ const Dashboard = () => {
 
     const end = pageRange.tempRange
     const start = pageRange.tempRange - pageRange.range
-
+    const tempLastPage = finalCommentsList.length / pageRange.range 
+    const lastPage = finalCommentsList.length % pageRange.range === 0 ? tempLastPage : parseInt(tempLastPage)
+    
 
     return(
         <>
             <div className='dashboard'>
-                <div>
-                    <button onClick={toggle} value="id">ID {sorting.field === 'id' && sorting.sortStatus === 1 ? "A":""}{sorting.field === 'id' && sorting.sortStatus === 2 ? "D":""}</button>
-                    <button onClick={toggle} value="name">Name {sorting.field === 'name' && sorting.sortStatus === 1 ? "A":""}{sorting.field === 'name' && sorting.sortStatus === 2 ? "D":""}</button>
-                    <button onClick={toggle} value="email">Email {sorting.field === 'email' && sorting.sortStatus === 1 ? "A":""}{sorting.field === 'email' && sorting.sortStatus === 2 ? "D":""}</button>
-                    <input placeholder='search name, email' type="search" onChange={onSearch} />
+                <div className='flex-container space-between'>
+                    <div className='flex'>
+                        <button className='flex sort-btn' onClick={toggle} value="id">
+                        Post ID 
+                        <span className='sorting-icons-box'>
+                            <FaSortUp className={`${sorting.field === 'id' && sorting.sortStatus === 1 ? "active-icon":"unactive-icon"}`} />
+                            <FaSortDown className={`${sorting.field === 'id' && sorting.sortStatus === 2 ? "active-icon":"unactive-icon"}`} />
+                        </span>
+                    </button>
+                    <button  className='flex sort-btn'onClick={toggle} value="name">Name 
+                        <span className='sorting-icons-box'>
+                            <FaSortUp className={`${sorting.field === 'name' && sorting.sortStatus === 1 ? "active-icon":"unactive-icon"}`} />
+                            <FaSortDown className={`${sorting.field === 'name' && sorting.sortStatus === 2 ? "active-icon":"unactive-icon"}`} />
+                        </span>
+                    </button>
+                    <button className='flex sort-btn' onClick={toggle} value="email">Email 
+                        <span className='sorting-icons-box'>
+                            <FaSortUp className={`${sorting.field === 'email' && sorting.sortStatus === 1 ? "active-icon":"unactive-icon"}`} />
+                            <FaSortDown className={`${sorting.field === 'email' && sorting.sortStatus === 2 ? "active-icon":"unactive-icon"}`} />
+                        </span>
+                    </button>
+                    </div>
+                    <div className='flex'>
+                        <CiSearch className='search-icon' />
+                        <input className='input-box' placeholder='search name, email, comment' type="search" onChange={onSearch} />
+                    </div>
+                    
                 </div>
                 <ul className='comments-container'>
                     <li className='comment-item table-header'>
-                        <p className='col'>Post ID</p>
+                        <p className='id-col'>Post ID</p>
                         <p className='col'>Name</p>
                         <p className='col'>Email</p>
                         <p className='col'>Comment</p>
                     </li>
                     {finalCommentsList.slice(start,end).map(eachComment => <CommentItem comment={eachComment} />)}
                 </ul>
-                <div className='pagination'>
+                <div className='pagination space-between'>
                     <p>{start + 1}-{end} of {finalCommentsList.length} items</p>
-                    <button onClick={onPrevPage}>{'<'}</button>
-                    <p>{pageRange.page}</p>
-                    <button onClick={onForwardPage}>{'>'}</button>
-                    <select onChange={onUpdatePageRange}>
-                        <option value="10" >10 / Page</option>
-                        <option value="50" >50 / Page</option>
-                        <option value="100" >100 / Page</option>
-                    </select>
+                    <div className='flex'>
+
+                        <button onClick={onPrevPage}>{'<'}</button>
+                        <p>{pageRange.page}</p>
+                        <button onClick={onForwardPage}>{'>'}</button>
+
+                        <select className='select-element' onChange={onUpdatePageRange}>
+                            <option value="10" >10 / Page</option>
+                            <option value="50" >50 / Page</option>
+                            <option value="100" >100 / Page</option>
+                        </select>
+
+                    </div>
+                    
                 </div>
             </div>
         </>
